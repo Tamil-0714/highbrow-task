@@ -2,6 +2,10 @@ const jsdom = require("jsdom");
 const axios = require("axios");
 const { JSDOM } = jsdom;
 const fs = require("fs");
+const express = require("express");
+
+const app = express();
+const PORT = 3000;
 
 async function fetchURL(url) {
   try {
@@ -61,17 +65,25 @@ function saveTableDataAsJSON(filename, data) {
   });
 }
 
-(async () => {
+
+app.get(["/", "/List_of_FIFA_World_Cup_finals"], async (req, res) => {
   try {
     const URL = "https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals";
     const HTML_result = await fetchURL(URL);
-
     const tableClassName = "table.sortable.plainrowheaders.wikitable";
     const tableResult = parseTableFromHTML(HTML_result, tableClassName);
     const extractedTableData = extractFieldDataFromTable(tableResult);
     const tableDataFileName = "fifa_world_cup_finals.json";
     saveTableDataAsJSON(tableDataFileName, extractedTableData);
+    if (extractedTableData) {
+      res.status(200).json({ values: extractedTableData });
+    }
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Internal server error" });
   }
-})();
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

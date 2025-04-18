@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,8 @@
   "type": "commonjs",
   "dependencies": {
     "axios": "^1.8.4",
-    "jsdom": "^26.1.0"
+    "express": "^5.1.0",
+    "jsdom": "^26.1.0",
+    "nodemon": "^3.1.9"
   }
 }
