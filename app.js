@@ -23,9 +23,6 @@ function parseTableFromHTML(html, tableClass) {
     } else {
       throw new Error("The requested table from the html is not found");
     }
-
-    // console.log(FIFA_World_Cup_Table);
-    // console.log(tables);
   } catch (error) {
     throw error;
   }
@@ -34,8 +31,6 @@ function parseTableFromHTML(html, tableClass) {
 function extractFieldDataFromTable(table) {
   const rows = table.querySelectorAll("tbody > tr");
   const extractedData = [];
-
-  //   extractedData.push(["Year", "Winner", "Score", "Runners-up"]);
 
   // choosing min value is to avoid perform actions on undefined, If rows less than 11
   for (let i = 0; i < Math.min(11, rows.length); i++) {
