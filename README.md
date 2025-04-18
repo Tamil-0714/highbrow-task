@@ -16,6 +16,9 @@ The objective is to outline the process for extracting information from the firs
 
 ---
 
+### deployed API URL
+https://appsail-50026051012.development.catalystappsail.in/
+
 ## Implementation Steps
 
 ### 1. Fetch HTML from Wikipedia

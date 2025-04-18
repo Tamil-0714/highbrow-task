@@ -5,7 +5,6 @@ const fs = require("fs");
 const express = require("express");
 
 const app = express();
-const PORT = 3000;
 
 async function fetchURL(url) {
   try {
@@ -44,7 +43,7 @@ function extractFieldDataFromTable(table) {
     const winner = cells[1]?.textContent.trim();
     const score = cells[2]?.textContent.trim();
     const runnerUp = cells[3]?.textContent.trim();
-
+    
     extractedData.push([year, winner, score, runnerUp]);
   }
 
@@ -83,6 +82,7 @@ app.get(["/", "/List_of_FIFA_World_Cup_finals"], async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+const PORT = process.env.X_ZOHO_CATALYST_LISTEN_PORT ||3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
